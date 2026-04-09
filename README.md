@@ -1,63 +1,20 @@
-# GBM TRAIL Metabolic CRISPR/Cas9 Screen
+# GBM TRAIL Metabolic CRISPR/Cas9 Screen — Analysis Pipeline
 
-Genome-scale CRISPR-Cas9 pooled screen to identify metabolic gene dependencies in TRAIL-resistant versus TRAIL-sensitive glioblastoma (GBM) cell lines.
+A Python pipeline for analysing genome-scale CRISPR/Cas9 pooled screens with MAGeCK, including sgRNA counting, statistical testing, and publication-quality figure generation.
 
 ---
 
 ## Overview
 
-Glioblastoma (GBM) is the most common and aggressive primary brain tumor. TRAIL (Tumor Necrosis Factor-Related Apoptosis-Inducing Ligand) selectively induces apoptosis in tumor cells, but resistance frequently occurs. To understand the metabolic basis of TRAIL resistance, this screen applied the Sabatini Human Metabolic Gene Knockout Library to perform a genome-scale *in vivo* CRISPR/Cas9 screen comparing TRAIL-resistant (R) and TRAIL-sensitive (S) GBM cell lines before and after treatment.
+This repository contains analysis scripts for a pooled CRISPR metabolic knockout screen. The pipeline handles paired-end FASTQ input, runs MAGeCK count and test, and produces a standardised set of publication figures.
 
-**Library:** [Sabatini Human CRISPR Metabolic Knockout Library (Addgene #110066)](https://www.addgene.org/pooled-library/sabatini-human-crispr-metabolic-knockout/)  
-29,790 sgRNAs targeting 2,981 metabolic genes (~10 sgRNAs/gene)
-
-**Pipeline:** nf-core/crisprseq v2.3.0 → MAGeCK v0.5.9.5 (Robust Rank Aggregation)
+**Key feature:** Automatically concatenates R1 and R2 reads before MAGeCK counting to recover sgRNAs sequenced in both orientations — a common issue with paired-end CRISPR screen libraries.
 
 ---
 
-## Key Findings
+## Requirements
 
-| Comparison | Gene | LFC | p-value | Interpretation |
-|------------|------|-----|---------|----------------|
-| Sensitive: Post vs Day-0 | **CYP2E1** | −13.5 | 0.038 | Essential in TRAIL-sensitive cells; CYP450/ROS metabolism |
-| Resistant: Post vs Day-0 | **ASL** | −11.5 | 0.002 | Essential in resistant cells; arginine/urea cycle |
-| Resistant: Post vs Day-0 | **CYB5A** | −4.2 | 0.043 | Electron transfer; depleted in resistant cells |
-| Sensitive vs Resistant (Post) | **PLA2G4E** | −12.1 | 0.003 | More essential in sensitive cells post-treatment |
-
-> **Data quality note:** Severe library bottlenecking — only ~3.3% of sgRNAs detected (Gini ~0.997). Results are exploratory and require independent validation. No genes pass FDR < 0.25 owing to extreme sgRNA dropout; p < 0.05 is used as the primary threshold with appropriate caveats.
-
----
-
-## Repository Structure
-
-```
-├── analysis/
-│   ├── scripts/
-│   │   ├── last.py                    # Main pipeline: R1+R2 concat → count → test → figures
-│   │   ├── 01_denovo_count.py         # De novo sgRNA counting from FASTQ
-│   │   ├── 02_mageck_test.sh          # MAGeCK test (legacy, nf-core count input)
-│   │   └── 05_publication_figures.py  # Standalone figure generator (figures_v2/)
-│   ├── figures_last/                  # Final publication figures (PDF + PNG)
-│   ├── results/
-│   │   ├── last_count/                # MAGeCK count output (R1+R2 combined run)
-│   │   └── last_test/                 # MAGeCK test output (R1+R2 combined run)
-│   ├── mageck_test/                   # MAGeCK results from original nf-core run
-│   └── reports/
-│       ├── analysis_report.md         # Full methods and results
-│       └── correctness_audit.md       # Cross-analysis quality audit
-├── nf-core_crisprseq/
-│   ├── samplesheet.csv                # Sample sheet for nf-core pipeline
-│   └── CRISPR_nfcore.sh               # nf-core/crisprseq run command
-├── library_sabatini_metko.tsv         # sgRNA reference library (Addgene #110066)
-├── LICENSE
-└── README.md
-```
-
----
-
-## Quick Start
-
-### Requirements
+### Conda environment
 
 ```bash
 conda create -n mageck-env -c bioconda -c conda-forge \
@@ -65,86 +22,152 @@ conda create -n mageck-env -c bioconda -c conda-forge \
 conda activate mageck-env
 ```
 
-### Run the full pipeline
+### Software versions tested
+
+| Tool | Version |
+|------|---------|
+| MAGeCK | 0.5.9.5 |
+| Python | 3.12 |
+| nf-core/crisprseq | 2.3.0 |
+
+---
+
+## Repository Structure
+
+```
+├── analysis/
+│   └── scripts/
+│       ├── last.py                    # Main pipeline (recommended entry point)
+│       ├── 01_denovo_count.py         # De novo sgRNA extraction from raw FASTQ
+│       ├── 02_mageck_test.sh          # MAGeCK test wrapper (legacy)
+│       └── 05_publication_figures.py  # Standalone figure generator
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+---
+
+## Usage
+
+### Main pipeline (`last.py`)
+
+Runs the full analysis from raw paired-end FASTQs to figures in one command:
 
 ```bash
 conda activate mageck-env
-
-# Step 1–4 in one command:
-#   Concatenate R1+R2 FASTQs per sample
-#   → MAGeCK count (combined reads)
-#   → MAGeCK test (3 comparisons)
-#   → 9 publication figures
 python analysis/scripts/last.py
+```
 
-# Skip re-counting if count results already exist:
+**Steps performed automatically:**
+1. Concatenate R1 + R2 FASTQ per sample → `results/last_combined_fastq/`
+2. `mageck count` on combined reads → `results/last_count/`
+3. Fix duplicate column names in count table
+4. `mageck test` (3 comparisons) → `results/last_test/`
+5. Generate 9 publication figures → `figures_last/`
+
+**Skip recounting** if count results already exist:
+
+```bash
 python analysis/scripts/last.py --skip-count
 ```
 
-### Outputs
+### Expected inputs
 
-- `analysis/figures_last/` — 9 figures in PDF and PNG
-- `analysis/figures_last/significant_genes_last.csv` — all significant genes (p < 0.05)
-- `analysis/results/last_count/` — MAGeCK count table and QC summary
-- `analysis/results/last_test/` — per-comparison gene summary files
+Edit the `SAMPLES` list and `LIB_FILE` path at the top of `last.py` to match your data:
 
----
+```python
+# Path to sgRNA library TSV (sgRNA, sequence, gene columns)
+LIB_FILE = Path("path/to/your_library.tsv")
 
-## Pipeline Details
+# FASTQ directory
+FASTQ_DIR = Path("Fastq/")
 
-### Why R1+R2 concatenation?
-
-In this paired-end dataset, ~35% of R1 reads contain the sgRNA in reverse-complement orientation (detected by RC scaffold scan). MAGeCK count only processes the forward strand. Concatenating R1 and R2 before counting gives MAGeCK access to both orientations, improving the mapping rate.
-
-```bash
-# Handled automatically by last.py — equivalent to:
-cat sample_R1.fq.gz sample_R2.fq.gz > sample_combined.fq.gz
-mageck count -l library.tsv --fastq sample_combined.fq.gz ...
+# Sample list: (label, condition, R1_filename, R2_filename)
+SAMPLES = [
+    ("R0_1", "R0", "sample_R01_R1.fq.gz", "sample_R01_R2.fq.gz"),
+    ...
+]
 ```
-
-### Library bottlenecking
-
-Despite the orientation fix, the Gini index remains ~0.997 (ideal: <0.2). The dominant cause is library coverage — only ~1,006/30,197 sgRNAs were detected across all samples. This is likely due to suboptimal transduction efficiency (MOI and cell number) during viral library delivery.
-
-**Recommendations for re-screening:**
-- ≥15 million cells at transduction (500× coverage for 30K sgRNAs)
-- Target MOI 0.3 for single-copy integration
-- ≥300 reads/sgRNA sequencing depth (>9M reads per sample)
-- QC the plasmid library before transduction
 
 ### Comparisons
 
-| Comparison ID | Description |
-|---------------|-------------|
-| `Spost_vs_S0` | Essential genes in sensitive cells under treatment |
-| `Rpost_vs_R0` | Essential genes in resistant cells under treatment |
-| `Spost_vs_Rpost` | Differential essentiality: sensitive vs resistant (post-treatment) |
+Edit the `COMP_GROUPS` dict to define your treatment vs control groups:
+
+```python
+COMP_GROUPS = {
+    "Treated_vs_Control": ("treated_1,treated_2", "control_1,control_2"),
+}
+```
 
 ---
 
-## Dependencies
+## Output Files
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| MAGeCK | 0.5.9.5 | sgRNA counting and RRA statistical test |
-| nf-core/crisprseq | 2.3.0 | Nextflow pipeline wrapper |
-| Python | ≥3.10 | Analysis scripts |
-| matplotlib | — | Figure generation |
-| seaborn | — | Figure styling |
-| scipy | — | Spearman correlation |
-| adjustText | — | Non-overlapping gene labels |
+| Path | Description |
+|------|-------------|
+| `figures_last/Fig1_volcano.*` | Volcano plots (LFC vs −log₁₀p) |
+| `figures_last/Fig2_rank_lfc.*` | Gene rank by fold change |
+| `figures_last/Fig3_heatmap.*` | LFC heatmap across comparisons |
+| `figures_last/Fig4_barplot.*` | Top genes per comparison |
+| `figures_last/Fig5_qc_metrics.*` | Mapping rate, Gini index, depth |
+| `figures_last/Fig6_sgrna_profiles.*` | Per-sgRNA count profiles for key genes |
+| `figures_last/Fig7_replicate_corr.*` | Replicate Spearman correlations |
+| `figures_last/Fig8_cross_comparison.*` | Bubble plot across comparisons |
+| `figures_last/Fig9_summary_table.*` | Table of all significant genes |
+| `figures_last/significant_genes_last.csv` | Significant genes (p < 0.05) |
+
+All figures are saved as both **PDF** and **PNG** at 300 dpi.
+
+---
+
+## Library QC Thresholds
+
+The pipeline flags samples against standard CRISPR screen benchmarks:
+
+| Metric | Ideal | Poor |
+|--------|-------|------|
+| Mapping rate | ≥ 60% | < 10% |
+| Gini index | < 0.2 | > 0.9 |
+| sgRNA dropout | < 20% | > 80% |
+| Reads per sample | ≥ 9M | < 3M |
+
+---
+
+## De Novo sgRNA Counting (`01_denovo_count.py`)
+
+If the reference library does not match the sequenced library (low mapping rate), extract sgRNA sequences directly from reads:
+
+```bash
+python analysis/scripts/01_denovo_count.py \
+    --fastq-dir Fastq/ \
+    --outdir results/ \
+    --scaffold GTTTTAGAGCTAGAAATAGC \
+    --min-reads 5
+```
+
+Outputs a count matrix and a de-novo library TSV for downstream BLAST annotation.
+
+---
+
+## Standalone Figure Generation (`05_publication_figures.py`)
+
+Regenerate figures only from existing MAGeCK results:
+
+```bash
+python analysis/scripts/05_publication_figures.py
+```
+
+Reads from `mageck_test/` by default. Edit `MT_DIR` at the top of the script to point to a different results directory.
 
 ---
 
 ## Citation
 
-If you use or adapt this analysis pipeline, please cite:
+If you use this pipeline, please cite:
 
 **MAGeCK:**
 > Li W, et al. (2014). MAGeCK enables robust identification of essential genes from genome-scale CRISPR/Cas9 knockout screens. *Genome Biology*, 15, 554.
-
-**Library:**
-> Birsoy K, et al. (2015). An Essential Role of the Mitochondrial Electron Transport Chain in Cell Proliferation Is to Enable Aspartate Synthesis. *Cell*, 162(3):540–551.
 
 **nf-core/crisprseq:**
 > Ewels PA, et al. (2020). The nf-core framework for community-curated bioinformatics pipelines. *Nature Biotechnology*.

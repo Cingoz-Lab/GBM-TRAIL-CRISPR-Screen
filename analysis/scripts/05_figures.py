@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-05_publication_figures.py
+05_figures.py
 =========================
-Publication-quality figures for GBM TRAIL Metabolic CRISPR/Cas9 Screen.
 
 Generates 9 figures (PDF + PNG) in analysis/figures_v2/.
 

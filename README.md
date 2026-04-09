@@ -22,14 +22,6 @@ conda create -n mageck-env -c bioconda -c conda-forge \
 conda activate mageck-env
 ```
 
-### Software versions tested
-
-| Tool | Version |
-|------|---------|
-| MAGeCK | 0.5.9.5 |
-| Python | 3.12 |
-| nf-core/crisprseq | 2.3.0 |
-
 ---
 
 ## Repository Structure
@@ -168,9 +160,6 @@ If you use this pipeline, please cite:
 
 **MAGeCK:**
 > Li W, et al. (2014). MAGeCK enables robust identification of essential genes from genome-scale CRISPR/Cas9 knockout screens. *Genome Biology*, 15, 554.
-
-**nf-core/crisprseq:**
-> Ewels PA, et al. (2020). The nf-core framework for community-curated bioinformatics pipelines. *Nature Biotechnology*.
 
 ---
 

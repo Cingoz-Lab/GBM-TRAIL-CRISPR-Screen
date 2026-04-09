@@ -32,7 +32,7 @@ conda activate mageck-env
 │       ├── last.py                    # Main pipeline (recommended entry point)
 │       ├── 01_denovo_count.py         # De novo sgRNA extraction from raw FASTQ
 │       ├── 02_mageck_test.sh          # MAGeCK test wrapper (legacy)
-│       └── 05_figures.py  # Standalone figure generator
+│       └── 05_figures.py              # figure generator
 ├── .gitignore
 ├── LICENSE
 └── README.md

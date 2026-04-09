@@ -1,0 +1,87 @@
+INFO  @ Thu, 09 Apr 2026 10:40:26: Parameters: /home/emrebora/anaconda3/envs/mageck-env/bin/mageck test -k /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_count/last_count_fixed.txt -t Spost_1,Spost_2,Spost_3 -c S0_1,S0_2,S0_3 -n /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0 --gene-lfc-method median --remove-zero both --remove-zero-threshold 0 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Welcome to MAGeCK v0.5.9.5. Command: test 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Loading count table from /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_count/last_count_fixed.txt  
+INFO  @ Thu, 09 Apr 2026 10:40:26: Processing 1 lines.. 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Loaded 30197 records. 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Loading Rnw template file: /home/emrebora/anaconda3/envs/mageck-env/lib/python3.12/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Setting up the visualization module... 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Loading R template file: /home/emrebora/anaconda3/envs/mageck-env/lib/python3.12/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Loading R template file: /home/emrebora/anaconda3/envs/mageck-env/lib/python3.12/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Loading Rnw template file: /home/emrebora/anaconda3/envs/mageck-env/lib/python3.12/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Setting up the visualization module... 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Given sample labels: Spost_1,Spost_2,Spost_3 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Converted index: 10 11 12 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Treatment samples:Spost_1,Spost_2,Spost_3 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Treatment sample index:10,11,12 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Given sample labels: S0_1,S0_2,S0_3 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Converted index: 7 8 9 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Control samples:S0_1,S0_2,S0_3 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Control sample index:7,8,9 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Initial (total) size factor: 3.6939834162520726 0.4710242935286898 2.0858705891827403 38.943179831462636 3.834426438336828 0.35206717794892173 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 0 has zero median count, so median normalization is not possible. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 0 has too many zero-count sgRNAs (0.9982779746332417), and median normalization is unstable. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 1 has zero median count, so median normalization is not possible. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 1 has too many zero-count sgRNAs (0.9980792793986157), and median normalization is unstable. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 2 has zero median count, so median normalization is not possible. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 2 has too many zero-count sgRNAs (0.998145511143491), and median normalization is unstable. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 3 has zero median count, so median normalization is not possible. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 3 has too many zero-count sgRNAs (0.9998344206378117), and median normalization is unstable. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 4 has zero median count, so median normalization is not possible. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 4 has too many zero-count sgRNAs (0.9985760174851807), and median normalization is unstable. Switch to total read count normalization. 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Sample 5 has too many zero-count sgRNAs (0.9926813921912773), and median normalization is unstable. Switch to total read count normalization. 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Final size factor: 3.6939834162520726 0.4710242935286898 2.0858705891827403 38.943179831462636 3.834426438336828 0.35206717794892173 
+WARNING @ Thu, 09 Apr 2026 10:40:26: Some samples have unusually small or large normalization factors (<0.2 or >5). Please double-check with the normalization process. 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Detecting outliers from variance estimation.. Avg read count:[0.0], Var: [95039.19197637316] 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Skipping 1 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: Adjusted model: 1.302548821061283	11.318929334336369 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Before RRA, 30184 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: lower test FDR cutoff: 0.9230769230769231 
+DEBUG @ Thu, 09 Apr 2026 10:40:26: higher test FDR cutoff: 0.07692307692307693 
+INFO  @ Thu, 09 Apr 2026 10:40:26: Running command: RRA -i /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.plow.txt -o /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.gene.low.txt -p 0.5 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 09 Apr 2026 10:40:27: Command message: 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Skipping gene na for permutation ... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Reading input file... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Summary: 13 sgRNAs, 13 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Computing lo-values for each group... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Computing false discovery rate... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Increase the number of permutations to 7693 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Permuting genes with 1 sgRNAs... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Number of genes under FDR adjustment: 13 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Saving to output file... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   RRA completed. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Groups deletion complete. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Lists deletion complete. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:    
+INFO  @ Thu, 09 Apr 2026 10:40:27: End command message. 
+INFO  @ Thu, 09 Apr 2026 10:40:27: Running command: RRA -i /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.phigh.txt -o /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.gene.high.txt -p 0.07692307692307693 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 09 Apr 2026 10:40:27: Command message: 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Skipping gene na for permutation ... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Reading input file... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Summary: 13 sgRNAs, 13 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Computing lo-values for each group... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Computing false discovery rate... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Increase the number of permutations to 7693 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Permuting genes with 1 sgRNAs... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Number of genes under FDR adjustment: 13 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Saving to output file... 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   RRA completed. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Groups deletion complete. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:   Lists deletion complete. 
+INFO  @ Thu, 09 Apr 2026 10:40:27:    
+INFO  @ Thu, 09 Apr 2026 10:40:27: End command message. 
+DEBUG @ Thu, 09 Apr 2026 10:40:27: Sorting the merged items by negative selection... 
+INFO  @ Thu, 09 Apr 2026 10:40:27: Loading top 10 genes from /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.gene.low.txt: CYP2E1,COQ4,CYB5A,PIGQ,HEPHL1,CACNA1I,APOC1,FADS6,SLC45A2,TECR 
+DEBUG @ Thu, 09 Apr 2026 10:40:27: Column index:3 
+INFO  @ Thu, 09 Apr 2026 10:40:27: Loading top 10 genes from /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.gene.high.txt: NAT2,ALOX15,SLC25A20,TECR,SLC45A2,FADS6,CACNA1I,APOC1,PIGQ,HEPHL1 
+DEBUG @ Thu, 09 Apr 2026 10:40:27: Column index:9 
+INFO  @ Thu, 09 Apr 2026 10:40:27: Running command: rm /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.plow.txt 
+INFO  @ Thu, 09 Apr 2026 10:40:27: Running command: rm /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.phigh.txt 
+INFO  @ Thu, 09 Apr 2026 10:40:27: Running command: rm /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.gene.low.txt 
+INFO  @ Thu, 09 Apr 2026 10:40:27: Running command: rm /home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_test/Spost_vs_S0.gene.high.txt 
+WARNING @ Thu, 09 Apr 2026 10:40:27: Warning messages generated during normalization. Please double check with the log file to make sure the normalization process is proper. 

@@ -1,0 +1,51 @@
+# Raw sequencing data — never commit
+Fastq/
+*.fq.gz
+*.fastq.gz
+*.fq
+*.fastq
+
+# Combined/intermediate FASTQs
+analysis/results/last_combined_fastq/
+
+# Pipeline work directories
+crisprseq_out/
+work/
+.nextflow/
+.nextflow.log*
+
+# Confidential reports and source documents
+*.pdf
+*.docx
+
+# Excel files (processed TSV is tracked instead)
+*.xlsx
+*.xls
+Main/
+
+# MAGeCK large count matrices (summaries and gene results are tracked)
+analysis/mageck_test/*.count.txt
+analysis/results/last_count/*.count.txt
+analysis/results/last_count/*.count_normalized.txt
+
+# MAGeCK/R intermediate report files
+*.Rmd
+*.Rnw
+*.R
+.Rhistory
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Personal/local notes
+my_request
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,14 @@
+File	Label	Reads	Mapped	Percentage	TotalsgRNAs	Zerocounts	GiniIndex	NegSelQC	NegSelQCPval	NegSelQCPvalPermutation	NegSelQCPvalPermutationFDR	NegSelQCGene
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/R0_1_combined.fq.gz	R0_1	26796232	1574895	0.05877	30197	30038	0.997	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/R0_2_combined.fq.gz	R0_2	27210916	1771598	0.06511	30197	30070	0.9973	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/R0_3_combined.fq.gz	R0_3	5763410	258465	0.04485	30197	30028	0.9961	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/Rpost_1_combined.fq.gz	Rpost_1	23589580	1154155	0.04893	30197	29903	0.993	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/Rpost_2_combined.fq.gz	Rpost_2	3685172	218361	0.05925	30197	30086	0.9974	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/Rpost_3_combined.fq.gz	Rpost_3	16519378	983671	0.05955	30197	29904	0.9949	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/Rpost_4_combined.fq.gz	Rpost_4	15189718	103945	0.006843	30197	30114	0.9983	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/S0_1_combined.fq.gz	S0_1	19929882	100500	0.005043	30197	30145	0.9992	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/S0_2_combined.fq.gz	S0_2	23402972	788166	0.03368	30197	30139	0.9989	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/S0_3_combined.fq.gz	S0_3	3308726	177981	0.05379	30197	30141	0.9988	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/Spost_1_combined.fq.gz	Spost_1	2386442	9533	0.003995	30197	30192	1	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/Spost_2_combined.fq.gz	Spost_2	4508590	96819	0.02147	30197	30154	0.9992	0	1	1	1	0.0
+/home/emrebora/Desktop/AC_Lab/CRISPR-Seq/analysis/results/last_combined_fastq/Spost_3_combined.fq.gz	Spost_3	28300718	1054473	0.03726	30197	29976	0.9966	0	1	1	1	0.0

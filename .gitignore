@@ -28,12 +28,11 @@ analysis/mageck_test/*.count.txt
 analysis/results/last_count/*.count.txt
 analysis/results/last_count/*.count_normalized.txt
 
-# R workspace files (not the scripts themselves)
+# MAGeCK/R intermediate report files
 *.Rmd
 *.Rnw
+*.R
 .Rhistory
-.RData
-*.Rproj
 
 # Python cache
 __pycache__/

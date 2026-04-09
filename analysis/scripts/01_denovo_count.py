@@ -47,21 +47,22 @@ MIN_SAMPLES  = 1                          # min samples with ≥1 read
 FASTQ_DIR    = Path(__file__).parents[1] / "Fastq"
 OUT_DIR      = Path(__file__).parents[1] / "results"
 
-# Sample name → FASTQ R1 file mapping (edit if your naming differs)
+# Sample name → FASTQ R1 file mapping
+# Edit these filenames to match your sequencing data
 SAMPLES = {
-    "R0_1":    "PRJ25-131-R01_L01_59_1.fq.gz",
-    "R0_2":    "PRJ25-131-R02_L01_60_1.fq.gz",
-    "R0_3":    "PRJ25-131-R03_L01_61_1.fq.gz",
-    "Rpost_1": "PRJ25-131-R1_L01_65_1.fq.gz",
-    "Rpost_2": "PRJ25-131-R2_L01_66_1.fq.gz",
-    "Rpost_3": "PRJ25-131-R3_L01_67_1.fq.gz",
-    "Rpost_4": "PRJ25-131-R4_L01_68_1.fq.gz",
-    "S0_1":    "PRJ25-131-S01_L01_56_1.fq.gz",
-    "S0_2":    "PRJ25-131-S02_L01_57_1.fq.gz",
-    "S0_3":    "PRJ25-131-S03_L01_58_1.fq.gz",
-    "Spost_1": "PRJ25-131-S1_L01_62_1.fq.gz",
-    "Spost_2": "PRJ25-131-S2_L01_63_1.fq.gz",
-    "Spost_3": "PRJ25-131-S3_L01_64_1.fq.gz",
+    "R0_1":    "R0_1_R1.fq.gz",
+    "R0_2":    "R0_2_R1.fq.gz",
+    "R0_3":    "R0_3_R1.fq.gz",
+    "Rpost_1": "Rpost_1_R1.fq.gz",
+    "Rpost_2": "Rpost_2_R1.fq.gz",
+    "Rpost_3": "Rpost_3_R1.fq.gz",
+    "Rpost_4": "Rpost_4_R1.fq.gz",
+    "S0_1":    "S0_1_R1.fq.gz",
+    "S0_2":    "S0_2_R1.fq.gz",
+    "S0_3":    "S0_3_R1.fq.gz",
+    "Spost_1": "Spost_1_R1.fq.gz",
+    "Spost_2": "Spost_2_R1.fq.gz",
+    "Spost_3": "Spost_3_R1.fq.gz",
 }
 
 

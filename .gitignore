@@ -11,8 +11,7 @@ analysis/results/last_combined_fastq/
 # Pipeline work directories
 crisprseq_out/
 work/
-.nextflow/
-.nextflow.log*
+
 
 # Confidential reports and source documents
 *.pdf

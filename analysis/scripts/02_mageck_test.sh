@@ -7,9 +7,9 @@
 #   (b) The nf-core/crisprseq-generated count table (if preferred)
 #
 # Comparisons:
-#   - Spost_vs_S0    : Susceptible post-treatment vs Day-0 baseline
+#   - Spost_vs_S0    : Sensitive post-treatment vs Day-0 baseline
 #   - Rpost_vs_R0    : Resistant post-treatment vs Day-0 baseline
-#   - Spost_vs_Rpost : Susceptible vs Resistant (both post-treatment)
+#   - Spost_vs_Rpost : Sensitive vs Resistant (both post-treatment)
 #
 # MAGeCK test algorithm (RRA — Robust Rank Aggregation):
 #   1. Normalises read counts (median normalisation by default)

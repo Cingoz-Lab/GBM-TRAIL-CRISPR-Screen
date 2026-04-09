@@ -60,9 +60,9 @@ PVAL_THRESH   = 0.05    # use p-value when FDR is too conservative
 TOP_N_LABEL   = 12
 
 COMPARISONS = {
-    "Spost_vs_S0":    "Susceptible: Post vs Day-0",
+    "Spost_vs_S0":    "Sensitive: Post vs Day-0",
     "Rpost_vs_R0":    "Resistant: Post vs Day-0",
-    "Spost_vs_Rpost": "Susceptible vs Resistant (Post)",
+    "Spost_vs_Rpost": "Sensitive vs Resistant (Post)",
 }
 
 DEPL = "#1565C0"

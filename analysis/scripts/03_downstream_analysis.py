@@ -60,9 +60,9 @@ COND_PALETTE = {
 }
 
 COMPARISONS = {
-    "Spost_vs_S0":    "Susceptible: Post vs Day-0",
+    "Spost_vs_S0":    "Sensitive: Post vs Day-0",
     "Rpost_vs_R0":    "Resistant: Post vs Day-0",
-    "Spost_vs_Rpost": "Susceptible vs Resistant (Post)",
+    "Spost_vs_Rpost": "Sensitive vs Resistant (Post)",
 }
 
 

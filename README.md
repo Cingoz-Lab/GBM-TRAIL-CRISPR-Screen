@@ -1,6 +1,6 @@
-# GBM TRAIL Metabolic CRISPR/Cas9 Screen — Analysis Pipeline
+# GBM Metabolic CRISPR/Cas9 Screen — Analysis Pipeline
 
-A Python pipeline for analysing genome-scale CRISPR/Cas9 pooled screens with MAGeCK, including sgRNA counting, statistical testing, and publication-quality figure generation.
+A Python pipeline for analysing CRISPR/Cas9 pooled screens with MAGeCK, including sgRNA counting, statistical testing, and figure generation.
 
 ---
 
@@ -32,7 +32,7 @@ conda activate mageck-env
 │       ├── last.py                    # Main pipeline (recommended entry point)
 │       ├── 01_denovo_count.py         # De novo sgRNA extraction from raw FASTQ
 │       ├── 02_mageck_test.sh          # MAGeCK test wrapper (legacy)
-│       └── 05_figures.py              # figure generator
+│       └── 03_figures.py              # figure generator
 ├── .gitignore
 ├── LICENSE
 └── README.md
@@ -142,12 +142,12 @@ Outputs a count matrix and a de-novo library TSV for downstream BLAST annotation
 
 ---
 
-## Standalone Figure Generation (`05_publication_figures.py`)
+## Standalone Figure Generation (`03_figures.py`)
 
 Regenerate figures only from existing MAGeCK results:
 
 ```bash
-python analysis/scripts/05_publication_figures.py
+python analysis/scripts/03_figures.py
 ```
 
 Reads from `mageck_test/` by default. Edit `MT_DIR` at the top of the script to point to a different results directory.
